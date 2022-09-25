@@ -91,7 +91,6 @@ def get_trac_details(ticket_no):
     )
 
     data = resp.json()["result"][3]
-    breakpoint()
 
     ticket = {
         "ticket_id": ticket_no,
@@ -133,8 +132,13 @@ def github_api(uri):
 
     resp = httpx.get(
         "https://api.github.com" + uri,
-        headers={"Authorization": f"Bearer {GITHUB_TOKEN}"},
+        headers={
+            "Authorization": f"Bearer {GITHUB_TOKEN}",
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3.raw",
+        }
     )
+    # Why no token being detected? :(
 
     if resp.status_code != 200:
         print(resp.headers)
