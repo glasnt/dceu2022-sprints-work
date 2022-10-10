@@ -2,7 +2,7 @@ import csv
 import json
 import os
 import re
-
+from pathlib import Path
 import httpx
 from git import Repo
 
@@ -22,15 +22,14 @@ merge_base = repo.merge_base(start_commit, end_commit)[
 ]  # c1689e65ffc64611bdc093baa5b767a18afea409
 
 # shorter set for testing TODO fix.
-merge_base = repo.commit("d783ce3d8")
-end_commit = repo.commit("29fac6b6")
+#merge_base = repo.commit("d783ce3d8")
+#end_commit = repo.commit("29fac6b6")
 
 
 def print_to_csv(filename, data):
-
     print(filename, len(data))
 
-    f = open(filename, "w")
+    f = open(Path("data") / filename, "w")
     csv_w = csv.writer(f)
     csv_w.writerow(data[0].keys())
     for row in data:
@@ -206,7 +205,6 @@ trac_ticket_comments = []
 
 print("tickets", len(tickets_ids))
 
-"""TODO unskip later
 for ticket_no in tickets_ids:
     ticket, ticket_comments = get_trac_details(ticket_no)
 
@@ -214,9 +212,6 @@ for ticket_no in tickets_ids:
     trac_ticket_comments += ticket_comments
 print_to_csv("trac_tickets.csv", tickets)
 print_to_csv("trac_ticket_comments.csv", trac_ticket_comments)
-
-"""
-
 
 comments = []
 
