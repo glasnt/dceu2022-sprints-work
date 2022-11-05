@@ -1,0 +1,5 @@
+ipywidgets
+widgetsnbextension
+pandas-profiling
+notebook
+python-dotenv
