@@ -3,3 +3,7 @@ widgetsnbextension
 pandas-profiling
 notebook
 python-dotenv
+
+
+nltk
+numpy
